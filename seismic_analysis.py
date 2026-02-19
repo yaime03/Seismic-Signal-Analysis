@@ -12,7 +12,13 @@ g = 981
 sampling_rate = 200
 dt = 1 / sampling_rate
 
+
 acceleration_g = raw_acceleration / g
+
+mean_acc = np.mean(acceleration_g)
+print(f"Baseline offset removed: {mean_acc:.6f} g")
+acceleration_g = acceleration_g - mean_acc
+
 num_points = np.size(acceleration_g)
 
 t_start, t_end = 0, (num_points - 1) * dt
